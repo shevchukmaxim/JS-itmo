@@ -1,0 +1,84 @@
+body {
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #ffffff;
+}
+
+p {
+	text-align: left;
+	font-family: "Noto Serif", serif;
+	font-size: 15px;
+    font-size: 1.5rem;
+    line-height: 1.6;
+}
+
+blockquote {
+    background: #f7f7f7;
+    border-left: 1px solid #bbb;
+    font-style: italic;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+}
+ 
+blockquote:before {
+    color: #bbb;
+    content: "\201C"; /* Непечатаемый символ слева */
+    font-size: 3em;
+    line-height: 0.1em;
+    margin-right: 0.2em;
+    vertical-align: -.4em;
+}
+ 
+blockquote:after {
+    color: #bbb;
+    content: "\201D"; /* Непечатаемый символ справа */
+    font-size: 3em;
+    line-height: 0.1em;
+    vertical-align: -.45em;
+}
+ 
+blockquote > p:first-child {
+    display: inline;
+}
+
+.main-page {
+	text-align: center;
+	width: 60%;
+	margin: auto;
+	color: #22252d;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.main-page h1 {
+	font-size: 24px;
+    line-height: 1.333334em;
+    font-weight: 300;
+    margin: 0 0 3px 0;
+}
+
+.page-footer {
+	text-align: center;
+	margin-bottom: 50px;
+}
+.control-btn {
+	font-family: "Segoe UI", sans-serif;
+	font-size: 24px;
+	border: 1px solid transparent;
+	background-color: #0073ca;;
+	text-align: center;
+	width: 100px;
+	padding: 8px 20px;
+
+}
+
+.control-btn:hover {
+	opacity: 0.8;
+}
+
+.description-title {
+	background: #f7f7f7;
+	padding: 10px;
+}
