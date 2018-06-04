@@ -30,29 +30,40 @@
 				<p class="editor-header-tab">index.html</p>
 			</div>
 			<div class="editor-body">
-				<pre id="editor"></pre>
+				<div id="editor">
+				</div>
 			</div>
 		</div>
 		<div id="browser">
 			<div class="browser-header">
 				<p class="browser-label">Результат</p>
 			</div>
-			<iframe id="myframe" class="browser-iframe" name="listenMsg" src="iframes/lesson01-iframe.html" frameborder="0" >
-			</iframe>
+			<div id="preview">	
+			</div>
 		</div>	
 	</div>
 	<footer class="page-footer">
 		<div class="page-control">
 			<a href="theory.html" class="control-btn prev">Назад</a>
 			<input id="btn-Preview-Image" type="button" value="Проверить"/>
-			<a href="#" class="control-btn next">Вперед</a>
+			<a href="#" id="next-button" class="control-btn next">Вперед</a>
 			
 		</div>
 	</footer>
 	
-	<div id="answer">
-		<iframe id="myframe-key" class="browser-iframe" name="listenMsg" src="iframes/lesson01-iframe-key.html" frameborder="0" >
-		</iframe>
+	<div id="key">
+		<style type="text/css">
+		.dot-answ {
+		  height: 25px;
+		  width: 25px;
+		  background-color: #FFFF00;
+		  display: inline-block;
+		}
+		</style>
+		<div class="dot-answ"></div>
+		<div class="dot-answ"></div>
+		<div class="dot-answ"></div>
+		<div class="dot-answ"></div>
 	</div>
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -66,26 +77,33 @@
 	<!--load ace emmet extension-->
 	<script src="./ace-builds/src/ext-emmet.js"></script>
 	<!--ace into iframe-->
-	<script src="script/aceframe.js" type="text/javascript"></script>
+	
 	
 	<script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
 	
 	<script src="rembrandt/browser.min.js"></script>
+
+	<script src="script/aceframe.js"></script>
 	
 
 	<script>
 		$(document).ready(function(){
 
-			var answer = $("#myframe");
-			var key = $("#myframe-key");
+			//фрейм с редактора
+			var answer = $("#preview");
+			//фрейм с ответом
+			var key = $("#key");
+
 			var imgAnswer;
 			var imgKey;
 
+			//канвас с редактора
 			html2canvas(answer, {
          		onrendered: function (canvas) {
                 	window.imgAnswer = canvas.toDataURL();
              		}
          	});
+         	//канвас с ответа
          	html2canvas(key, {
          		onrendered: function (canvas) {
                 	window.imgKey = canvas.toDataURL();
@@ -93,6 +111,7 @@
          	});
 
 		    $("#btn-Preview-Image").on('click', function () {
+         		answer = $("#preview");
          		html2canvas(answer, {
          		onrendered: function (canvas) {
                 	window.imgAnswer = canvas.toDataURL();
@@ -104,9 +123,11 @@
                 	
              		}
          		});
+         		//открывам в новых вкладках полученные канвасы
 	    		window.open(window.imgAnswer); 
 	    		window.open(window.imgKey); 	
 
+	    		//делаем проверку между канвасами
 				const rembrandt = new Rembrandt({
 				  // `imageA` and `imageB` can be either Strings (file path on node.js,
 				  // public url on Browsers) or Buffers
@@ -117,7 +138,7 @@
 				  thresholdType: Rembrandt.THRESHOLD_PERCENT,
 
 				  // The maximum threshold (0...1 for THRESHOLD_PERCENT, pixel count for THRESHOLD_PIXELS
-				  maxThreshold: 0,
+				  maxThreshold: 0.001,
 
 				  // Maximum color delta (0...255):
 				  maxDelta: 15,
@@ -133,6 +154,9 @@
 				rembrandt.compare()
 				  .then(function (result) {
 				    console.log('Passed:', result.passed)
+				    if (result.passed) {
+				    	document.getElementById('next-button').classList.toggle('enabled');
+				    }
 				    console.log('Pixel Difference:', result.differences, 'Percentage Difference', result.percentageDifference, '%')
 				    console.log('Composition image buffer:', result.compositionImage)
 
