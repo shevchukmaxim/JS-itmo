@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Принципы гештальта: 1 урок</title>
 	<link href="style/style.css" rel="stylesheet">
+	<link href="style/lesson1.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 	
 </head>
@@ -11,6 +12,7 @@
 	<header class="page-header">
 		<p>Задание 1</p>
 	</header>
+
 	<div class="main">
 		<div id="theory">
 			<div class="theory-header">
@@ -42,29 +44,42 @@
 			</div>
 		</div>	
 	</div>
+
 	<footer class="page-footer">
 		<div class="page-control">
 			<a href="theory.html" class="control-btn prev">Назад</a>
-			<input id="btn-Preview-Image" type="button" value="Проверить"/>
-			<a href="#" id="next-button" class="control-btn next">Вперед</a>
-			
+			<input class="button-check" id="btn-Preview-Image" type="button" value="Проверить"/>
+			<a href="#" id="next-button" class="control-btn next">Вперед</a>	
 		</div>
 	</footer>
 	
 	<div id="key">
-		<style type="text/css">
-		.dot-answ {
-		  height: 25px;
-		  width: 25px;
-		  background-color: #FFFF00;
-		  display: inline-block;
+		<style>
+		.key-submit {
+		    width: 100%;
+		    background-color: green;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    border-radius: 4px;
+		    cursor: pointer;
 		}
 		</style>
-		<div class="dot-answ"></div>
-		<div class="dot-answ"></div>
-		<div class="dot-answ"></div>
-		<div class="dot-answ"></div>
+		<div class="form-task">
+		  <form action="/action_page.php">
+		    <label for="fname">First Name</label>
+		    <input name="firstname" type="text">
+		    
+		    <label for="lname">Last Name</label>
+		    <input name="lastname" type="text">
+		    
+		    <input class="key-submit" value="Submit" type="submit">
+		  </form>
+		</div>
 	</div>
+
+	<iframe src="task.html"></iframe>
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="script/script.js"></script>
@@ -83,49 +98,53 @@
 	
 	<script src="rembrandt/browser.min.js"></script>
 
-	<script src="script/aceframe.js"></script>
-	
-
 	<script>
 		$(document).ready(function(){
 
-			//фрейм с редактора
-			var answer = $("#preview");
-			//фрейм с ответом
-			var key = $("#key");
+			var editor = ace.edit("editor");
+			editor.session.setMode("ace/mode/html");
+			// enable emmet on the current editor
+			editor.setOption("enableEmmet", true);
 
-			var imgAnswer;
+
+			var iframe =  document.getElementById('preview');
+			//var iframeBody = iframe.getElementsByTagName('html');
+			
+			var contentz = window.frames[0].document.body.innerHTML; 
+			iframe.innerHTML = contentz;
+			
+			var iframes = document.querySelectorAll('iframe');
+			for (var i = 0; i < iframes.length; i++) {
+			    iframes[i].parentNode.removeChild(iframes[i]);
+			}
+
+			var framecontent = iframe.innerHTML;
+			editor.setValue(framecontent, 1);
+			editor.getSession().on('change', function() {
+				var x = editor.getValue();
+				iframe.innerHTML = x;
+			});
+
+			var key = document.getElementById('key');
 			var imgKey;
+			//канвас с ответа
+	         	html2canvas(key, {
+	         		onrendered: function (canvas) {
+	                	window.imgKey = canvas.toDataURL();
+	             		}
+	         	});
 
-			//канвас с редактора
-			html2canvas(answer, {
-         		onrendered: function (canvas) {
-                	window.imgAnswer = canvas.toDataURL();
-             		}
-         	});
-         	//канвас с ответа
-         	html2canvas(key, {
-         		onrendered: function (canvas) {
-                	window.imgKey = canvas.toDataURL();
-             		}
-         	});
 
-		    $("#btn-Preview-Image").on('click', function () {
-         		answer = $("#preview");
-         		html2canvas(answer, {
-         		onrendered: function (canvas) {
-                	window.imgAnswer = canvas.toDataURL();
-             		}
-         		});
-         		html2canvas(key, {
-         		onrendered: function (canvas) {
-                	window.imgKey = canvas.toDataURL();
-                	
-             		}
-         		});
-         		//открывам в новых вкладках полученные канвасы
-	    		window.open(window.imgAnswer); 
-	    		window.open(window.imgKey); 	
+
+		    $("#btn-Preview-Image").on('click', function() {
+				var imgAnswer;
+
+				//канвас с редактора
+				html2canvas($("#preview"), {
+	         		onrendered: function (canvas) {
+	                	window.imgAnswer = canvas.toDataURL();
+	             		}
+	         	});
 
 	    		//делаем проверку между канвасами
 				const rembrandt = new Rembrandt({
@@ -141,7 +160,7 @@
 				  maxThreshold: 0.001,
 
 				  // Maximum color delta (0...255):
-				  maxDelta: 15,
+				  maxDelta: 8,
 
 				  // Maximum surrounding pixel offset
 				  maxOffset: 0,

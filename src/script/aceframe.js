@@ -20,7 +20,6 @@ var contentz ='\
 <div class="dot"></div>\n\
 <div class="dot"></div>\n\
 <div class="dot"></div>\n\
-<div class="dot"></div>\n\
 ';
 	iframe.innerHTML = contentz;
 	
