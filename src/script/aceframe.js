@@ -8,24 +8,17 @@ $(document).ready(function(){
 	var iframe =  document.getElementById('preview');
 	//var iframeBody = iframe.getElementsByTagName('html');
 	
-var contentz ='\
-<style type="text/css">\n\
-	.dot {\n\
-	  height: 25px;\n\
-	  width: 25px;\n\
-	  background-color: #FFFF00;\n\
-	  display: inline-block;\n\
-	}\n\
-</style>\n\n\
-<div class="dot"></div>\n\
-<div class="dot"></div>\n\
-<div class="dot"></div>\n\
-';
+	var contentz = window.frames[0].document.body.innerHTML; 
 	iframe.innerHTML = contentz;
 	
+	var iframes = document.querySelectorAll('iframe');
+	for (var i = 0; i < iframes.length; i++) {
+	    iframes[i].parentNode.removeChild(iframes[i]);
+	}
+
 	var framecontent = iframe.innerHTML;
 	editor.setValue(framecontent, 1);
-	editor.getSession().on('change', function(e) {
+	editor.getSession().on('change', function() {
 		var x = editor.getValue();
 		iframe.innerHTML = x;
 	});

@@ -6,11 +6,10 @@
 	<link href="style/style.css" rel="stylesheet">
 	<link href="style/lesson1.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-	
 </head>
 <body>
 	<header class="page-header">
-		<p>Задание 1</p>
+		<p>Урок 1</p>
 	</header>
 
 	<div class="main">
@@ -20,11 +19,21 @@
 				<button class="hide-button" id="hide-buttn"><i id="arrow"></i></button>
 			</div>
 			<div class="theory-content">
-				<h3>Принцип №1: Фигура-Фон </h3>
-				<p>Идея состоит в том, что глаз будет отделять целые рисунки на фоне, чтобы понять увиденное
+				<h3>Принцип №1: Фокусные точки </h3>
+				<p>Элементы с интересным местом, акцентом или различием захватывают и удерживают внимание зрителя.
 				</p>
-				<img src="img/task01.jpg" alt="" width="100%">
-				<p>На изображении выше мгновенно распознается белое яблоко на черном фоне</p>
+				<img src="img/task1_1.png" alt="" width="100%">
+				<p>Когда вы смотрите на изображение выше, первое что вы заметите это красный квадрат, потому что он выделяется ярким цветом относительно других объектов.</p>
+				<button class="accordion">Задание</button>
+				<div class="panel">
+					<p>Выделим кнопку формы контрастным цветом:</p>
+					<ul>
+						<li>
+							<p>Задайте цвет кнопки <code style="color: #008000">#008000</code></p>
+						</li>
+					</ul>
+					
+				</div>	
 			</div>
 		</div>
 		<div id="editor-block">
@@ -49,7 +58,7 @@
 		<div class="page-control">
 			<a href="theory.html" class="control-btn prev">Назад</a>
 			<input class="button-check" id="btn-Preview-Image" type="button" value="Проверить"/>
-			<a href="#" id="next-button" class="control-btn next">Вперед</a>	
+			<a href="lesson02.html" id="next-button" class="control-btn disabled">Вперед</a>	
 		</div>
 	</footer>
 	
@@ -79,7 +88,7 @@
 		</div>
 	</div>
 
-	<iframe src="task.html"></iframe>
+	<iframe src="tasks/task01.html"></iframe>
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="script/script.js"></script>
@@ -98,33 +107,11 @@
 	
 	<script src="rembrandt/browser.min.js"></script>
 
+	<script src="script/task_accordion.js"></script>
+
+	<script src="script/aceframe.js"></script>
 	<script>
 		$(document).ready(function(){
-
-			var editor = ace.edit("editor");
-			editor.session.setMode("ace/mode/html");
-			// enable emmet on the current editor
-			editor.setOption("enableEmmet", true);
-
-
-			var iframe =  document.getElementById('preview');
-			//var iframeBody = iframe.getElementsByTagName('html');
-			
-			var contentz = window.frames[0].document.body.innerHTML; 
-			iframe.innerHTML = contentz;
-			
-			var iframes = document.querySelectorAll('iframe');
-			for (var i = 0; i < iframes.length; i++) {
-			    iframes[i].parentNode.removeChild(iframes[i]);
-			}
-
-			var framecontent = iframe.innerHTML;
-			editor.setValue(framecontent, 1);
-			editor.getSession().on('change', function() {
-				var x = editor.getValue();
-				iframe.innerHTML = x;
-			});
-
 			var key = document.getElementById('key');
 			var imgKey;
 			//канвас с ответа
@@ -133,8 +120,6 @@
 	                	window.imgKey = canvas.toDataURL();
 	             		}
 	         	});
-
-
 
 		    $("#btn-Preview-Image").on('click', function() {
 				var imgAnswer;
