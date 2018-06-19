@@ -2,14 +2,14 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<title>Принципы гештальта: 1 урок</title>
+	<title>Принципы гештальта: 2 урок</title>
 	<link href="style/style.css" rel="stylesheet">
-	<link href="style/lesson1.css" rel="stylesheet">
+	<link href="style/lesson2.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 </head>
 <body>
 	<header class="page-header">
-		<p>Урок 1</p>
+		<p>Урок 2</p>
 	</header>
 
 	<div class="main">
@@ -19,20 +19,19 @@
 				<button class="hide-button" id="hide-buttn"><i id="arrow"></i></button>
 			</div>
 			<div class="theory-content">
-				<h3>Принцип №1: Фокусные точки </h3>
-				<p>Элементы с интересным местом, акцентом или различием захватывают и удерживают внимание зрителя.
+				<h3>Принцип №2: Общие Области</h3>
+				<p>Элементы воспринимаются как часть группы, если они находятся в пределах одной замкнутой области.
 				</p>
-				<img src="img/task1_1.png" alt="" width="100%">
-				<p>Когда вы смотрите на изображение выше, первое что вы заметите это красный квадрат, потому что он выделяется ярким цветом относительно других объектов.</p>
+				<img src="img/task2_1.png" alt="" width="100%">
+				<p>Принцип общей области особенно полезен. И не только в организации группировки информации и контента, а также и в разделении контента, действуя как координационный центр.</p>
 				<button class="accordion">Задание</button>
 				<div class="panel">
-					<p>Выделим кнопку формы контрастным цветом:</p>
+					<p>Сгруппируем все наши элементы в одну область:</p>
 					<ul>
 						<li>
-							<p>Задайте цвет кнопки <code style="color: #008000">#008000</code></p>
+							<p>Укажите класс <code>card</code> в теге <code>div</code></p>
 						</li>
 					</ul>
-					
 				</div>	
 			</div>
 		</div>
@@ -56,39 +55,36 @@
 
 	<footer class="page-footer">
 		<div class="page-control">
-			<a href="theory.html" class="control-btn prev">Назад</a>
+			<a href="lesson01.html" class="control-btn prev">Назад</a>
 			<input class="button-check" id="btn-Preview-Image" type="button" value="Проверить"/>
-			<a href="lesson02.html" id="next-button" class="control-btn disabled">Вперед</a>	
+			<a href="lesson03.html" id="next-button" class="control-btn next disabled">Вперед</a>	
 		</div>
 	</footer>
 	
 	<div id="key">
 		<style>
-		.key-submit {
-		    width: 100%;
-		    background-color: green;
-		    color: white;
-		    padding: 14px 20px;
-		    margin: 8px 0;
-		    border: none;
-		    border-radius: 4px;
-		    cursor: pointer;
+		.card-key {
+		    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+		    width: 100px;
+		    height: 250px;
+		    border-radius: 5px;
+		    padding: 10px;
+		    margin: auto;
+		    text-align: center;
 		}
+
 		</style>
-		<div class="form-task">
-		  <form action="/action_page.php">
-		    <label for="fname">First Name</label>
-		    <input name="firstname" type="text">
-		    
-		    <label for="lname">Last Name</label>
-		    <input name="lastname" type="text">
-		    
-		    <input class="key-submit" value="Submit" type="submit">
-		  </form>
+
+		<h2 class="card-title">Карточка Товара</h2>
+
+		<div class="card-key">
+		  <img class="card_image" src="img/task_02_wrench.png" alt="Avatar">
+		  <p class="item-title">Гаечный ключ</p>
+		  <p class="item-description">300 руб.</p> 
 		</div>
 	</div>
 
-	<iframe src="tasks/task01.html"></iframe>
+	<iframe src="tasks/task02.html"></iframe>
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="script/script.js"></script>
@@ -157,8 +153,8 @@
 						    if (result.passed) {
 						    	document.getElementById('next-button').classList.add('enabled');
 						    }
-						    console.log('Pixel Difference:', result.differences, 'Percentage Difference', result.percentageDifference, '%');
-						    console.log('Composition image buffer:', result.compositionImage);
+						    console.log('Pixel Difference:', result.differences, 'Percentage Difference', result.percentageDifference, '%')
+						    console.log('Composition image buffer:', result.compositionImage)
 
 						    // Note that `compositionImage` is an Image when Rembrandt.js is run in the browser environment
 						  })

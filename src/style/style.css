@@ -177,6 +177,11 @@ body {
 	box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
+#browser span {
+	color: #ED1C24;
+	font-size: 19px;
+}
+
 .browser-header {
 	display: inline-flex;
 	height: 45px;
@@ -187,19 +192,23 @@ body {
 }
 
 .browser-header button {
-	color: #ffffff;
+	color: #ffffff4d;
 	border: none;
-	background-color: #354551;
+	background-color: #57646f33;
 	font-family: "Segoe UI", sans-serif;
 	font-size: 20px;
 	margin-left: 15px;
-	padding-top: 12px;
 	padding-left: 5px;
 }
 
 .browser-header button:hover{
 	opacity: 0.8;
 	cursor: pointer;
+}
+
+#btn-example {
+	background-color: #354551; 
+	color: #fff;
 }
 
 .chosen {
@@ -250,15 +259,19 @@ body {
 }
 
 .control-btn.disabled {
-	background-color: red;
-	visibility: hidden;
-	transition: left ease 0.2s;
+	background-color: #37475366;
+	pointer-events: none;
+	cursor: default;
+	color: #ffffff4d;
 }
 
 .control-btn.enabled {
 	background-color: green;
 	visibility: visible;
 	transition: left ease 0.2s;
+	color: #fff;
+	pointer-events: auto;
+	cursor: pointer;
 }
 
 .control-btn:hover {

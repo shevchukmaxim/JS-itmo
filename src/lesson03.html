@@ -2,14 +2,14 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<title>Принципы гештальта: 1 урок</title>
+	<title>Принципы гештальта: 3 урок</title>
 	<link href="style/style.css" rel="stylesheet">
-	<link href="style/lesson1.css" rel="stylesheet">
+	<link href="style/lesson2.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
 </head>
 <body>
 	<header class="page-header">
-		<p>Урок 1</p>
+		<p>Урок 3</p>
 	</header>
 
 	<div class="main">
@@ -19,20 +19,19 @@
 				<button class="hide-button" id="hide-buttn"><i id="arrow"></i></button>
 			</div>
 			<div class="theory-content">
-				<h3>Принцип №1: Фокусные точки </h3>
-				<p>Элементы с интересным местом, акцентом или различием захватывают и удерживают внимание зрителя.
+				<h3>Принцип №3: Продолжение</h3>
+				<p>Элементы, расположенные на линии или кривой, воспринимаются более связанными, чем элементы не на линии или кривой.
 				</p>
-				<img src="img/task1_1.png" alt="" width="100%">
-				<p>Когда вы смотрите на изображение выше, первое что вы заметите это красный квадрат, потому что он выделяется ярким цветом относительно других объектов.</p>
+				<img src="img/task3_1.png" alt="" width="100%">
+				<p>Элементы, следующие непрерывной линией, воспринимаются как сгруппированные. Чем более гладкие участки линии, тем более единую форму мы видим — наш ум предпочитает путь наименьшего сопротивления.</p>
 				<button class="accordion">Задание</button>
 				<div class="panel">
-					<p>Выделим кнопку формы контрастным цветом:</p>
+					<p>Расположим данные элементы в строку:</p>
 					<ul>
 						<li>
-							<p>Задайте цвет кнопки <code style="color: #008000">#008000</code></p>
+							<p>Добавьте свойство <code>display: inline-block</code> для тега <code>li</code></p>
 						</li>
 					</ul>
-					
 				</div>	
 			</div>
 		</div>
@@ -56,39 +55,36 @@
 
 	<footer class="page-footer">
 		<div class="page-control">
-			<a href="theory.html" class="control-btn prev">Назад</a>
+			<a href="lesson02.html" class="control-btn prev">Назад</a>
 			<input class="button-check" id="btn-Preview-Image" type="button" value="Проверить"/>
-			<a href="lesson02.html" id="next-button" class="control-btn disabled">Вперед</a>	
+			<a href="lesson_final.html" id="next-button" class="control-btn next disabled">Вперед</a>	
 		</div>
 	</footer>
 	
 	<div id="key">
 		<style>
-		.key-submit {
-		    width: 100%;
-		    background-color: green;
-		    color: white;
-		    padding: 14px 20px;
-		    margin: 8px 0;
-		    border: none;
-		    border-radius: 4px;
-		    cursor: pointer;
+		.steps-key li {
+			display: inline-block;
+		    width: 100px;
+		    height: 100px;
+		    line-height:100px;
+		    border-radius: 50%;
+		    border: 4px solid green;
+		    color: black;
+		    font-size: 14px;
+		    text-align: center;
+		    list-style-type: none;
 		}
 		</style>
-		<div class="form-task">
-		  <form action="/action_page.php">
-		    <label for="fname">First Name</label>
-		    <input name="firstname" type="text">
-		    
-		    <label for="lname">Last Name</label>
-		    <input name="lastname" type="text">
-		    
-		    <input class="key-submit" value="Submit" type="submit">
-		  </form>
-		</div>
+
+		<ul class="steps-key">
+			<li>1 STEP</li>
+			<li>2 STEP</li>
+			<li>3 STEP</li>
+		</ul>
 	</div>
 
-	<iframe src="tasks/task01.html"></iframe>
+	<iframe src="tasks/task03.html"></iframe>
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="script/script.js"></script>
@@ -157,8 +153,8 @@
 						    if (result.passed) {
 						    	document.getElementById('next-button').classList.add('enabled');
 						    }
-						    console.log('Pixel Difference:', result.differences, 'Percentage Difference', result.percentageDifference, '%');
-						    console.log('Composition image buffer:', result.compositionImage);
+						    console.log('Pixel Difference:', result.differences, 'Percentage Difference', result.percentageDifference, '%')
+						    console.log('Composition image buffer:', result.compositionImage)
 
 						    // Note that `compositionImage` is an Image when Rembrandt.js is run in the browser environment
 						  })
